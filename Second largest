@@ -1,0 +1,31 @@
+class Solution {
+    public int secondLargestElement(int[] nums) {
+        int largest = nums[0];
+        int secondLargestElement = -1;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > largest) {
+                secondLargestElement = largest;
+                largest = nums[i];
+            } else if (nums[i] < largest && nums[i] > secondLargestElement) {
+                secondLargestElement = nums[i];
+            }
+        }
+        return secondLargestElement;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {10, 20, 5, 40, 15};
+        Solution sol = new Solution();
+        int result = sol.secondLargestElement(nums);
+        System.out.println("Second Largest Element: " + result);
+    }
+}
+
+/*
+🕒 Time Complexity: O(n)
+    - We traverse the array once to find the largest and second largest.
+
+🧠 Space Complexity: O(1)
+    - Only a constant amount of extra space is used (two integer variables).
+*/
