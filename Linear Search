@@ -1,0 +1,32 @@
+import java.util.*;
+
+class Solution {
+    public int linearSearch(int nums[], int target) {
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == target) {
+                return target;  // Usually we return i (index), but your code returns value
+            }
+        }
+        return -1;  // Not found
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+
+        int[] nums = {10, 20, 30, 40, 50};
+        int target = 30;
+
+        System.out.println("Array: " + Arrays.toString(nums));
+        int result = sol.linearSearch(nums, target);
+
+        if (result != -1)
+            System.out.println("Target " + target + " found!");
+        else
+            System.out.println("Target " + target + " not found!");
+
+        // Time & Space Complexity
+        System.out.println("Time Complexity: O(n)");
+        System.out.println("Space Complexity: O(1)");
+    }
+}
