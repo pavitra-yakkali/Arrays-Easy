@@ -1,0 +1,41 @@
+import java.util.*;
+
+class Solution {
+
+    // Function to find longest subarray with sum = k
+    public int longestSubarray(int[] nums, int k) {
+        int sum = 0;           // Running sum
+        int maxLen = 0;        // Max length of subarray
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);        // Base case: sum = 0 at index -1
+
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+
+            // Check if sum-k exists in map
+            if (map.containsKey(sum - k)) {
+                maxLen = Math.max(maxLen, i - map.get(sum - k));
+            }
+
+            // Store first occurrence of sum
+            if (!map.containsKey(sum)) {
+                map.put(sum, i);
+            }
+        }
+
+        return maxLen;
+    }
+
+    // Main method to test the code
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+
+        int[] nums1 = {1, -1, 5, -2, 3};
+        int k1 = 3;
+        System.out.println("Longest subarray length: " + sol.longestSubarray(nums1, k1)); // Output: 4
+
+        int[] nums2 = {-2, -1, 2, 1};
+        int k2 = 1;
+        System.out.println("Longest subarray length: " + sol.longestSubarray(nums2, k2)); // Output: 2
+    }
+}
